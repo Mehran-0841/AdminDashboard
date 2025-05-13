@@ -37,10 +37,16 @@ export async function coursesLoader() {
 }
 
 const loadCourses = async () => {
-    const response = await httpInterceptedService.get('/Course/list');
-    // خروجی /Course/list از طریق data بدست خواهد آمد.
-    // console.log(response.data);
-    return response.data;
+  const response = await fetch('/courses.json');
+  return response.json();
 }
 
+// const loadCourses = async () => {
+//     const response = await httpInterceptedService.get('/Course/list');
+//     // خروجی /Course/list از طریق data بدست خواهد آمد.
+//     // console.log(response.data);
+//     return response.data;
+// }
+
 export default Courses;
+

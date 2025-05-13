@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "React Basics",
+    "teacher": "Ali",
+    "price": 120
+  },
+  {
+    "id": 2,
+    "title": "Advanced JS",
+    "teacher": "Sara",
+    "price": 150
+  }
+]
