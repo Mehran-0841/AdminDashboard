@@ -1,5 +1,5 @@
 import { httpInterceptedService } from "@core/http-service";
-import { Await, defer, useLoaderData } from "react-router-dom";
+import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 import CourseList from "../features/courses/componenets/course-list";
 
@@ -30,17 +30,30 @@ const Courses = () => {
     )
 }
 
+
+
 export async function coursesLoader() {
-    return defer({
-        courses: loadCourses(),
-    });
+  const responsePromise = httpInterceptedService.get("/Course/list");
+
+  // به‌صورت Deferred اما بدون استفاده از defer()
+  return {
+    courses: responsePromise.then(res => res.data),
+  };
 }
 
-const loadCourses = async () => {
-    const response = await httpInterceptedService.get('/Course/list');
-    // خروجی /Course/list از طریق data بدست خواهد آمد.
-    // console.log(response.data);
-    return response.data;
-}
+
+
+// export async function coursesLoader() {
+//     return defer({
+//         courses: loadCourses(),
+//     });
+// }
+
+// const loadCourses = async () => {
+//     const response = await httpInterceptedService.get('/Course/list');
+//     // خروجی /Course/list از طریق data بدست خواهد آمد.
+//     // console.log(response.data);
+//     return response.data;
+// }
 
 export default Courses;
