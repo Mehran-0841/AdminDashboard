@@ -8,6 +8,8 @@ import CourseList from "../features/courses/componenets/course-list";
 
 const Courses = () => {
     const data = useLoaderData();
+    // برای درک بهتر پراپس کنسول رو ببین و از کامنت بیرون بیار
+    console.log(data);
     return (
         <div className="row">
             <div className="col-12">
@@ -34,7 +36,6 @@ const Courses = () => {
 
 export async function coursesLoader() {
   const responsePromise = httpInterceptedService.get("/Course/list");
-
   // به‌صورت Deferred اما بدون استفاده از defer()
   return {
     courses: responsePromise.then(res => res.data),
@@ -44,6 +45,7 @@ export async function coursesLoader() {
 
 
 
+// اینها کد مربوط به دیفر و لودر بود که در نسخه هفت ری اکت روتر دام باید دیفر رو تغییر می دادیم
 // export async function coursesLoader() {
 //     return defer({
 //         courses: loadCourses(),

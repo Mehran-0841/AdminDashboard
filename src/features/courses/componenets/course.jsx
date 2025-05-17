@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 // علامت {} در ارسال آرگومان ها خیلی مهم هستش
 const Course = ({id, title, coverImageUrl, courseLevel, description, duration, numOfReviews }) => {
+    // console.log(id, title, coverImageUrl, courseLevel, description, duration, numOfReviews);
     return (
         <div className="card">
             <img className="card-img-top" src={coverImageUrl} />

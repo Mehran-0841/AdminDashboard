@@ -3,6 +3,8 @@ import Course from "./course";
 
 const CourseList = ({courses}) => {
     // const loadedCourses = useLoaderData();
+    // برای درک بهتر پراپس کنسول رو ببین و از کامنت بیرون بیار
+    // console.log(courses);
     return (
         <>
             <div className="row">
