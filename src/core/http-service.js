@@ -2,13 +2,16 @@ import axios from "axios";
 
 const BASE_URL = "https://react-mini-projects-api.classbon.com";
 
+
 export const httpService = axios.create({
     baseURL: BASE_URL,
 })
 
+
 export const httpInterceptedService = axios.create({
     baseURL: BASE_URL
 });
+
 
 httpInterceptedService.interceptors.request.use(
     async (config) => {
@@ -22,6 +25,7 @@ httpInterceptedService.interceptors.request.use(
     },
     (error) => Promise.reject(error)
 )
+
 
 httpInterceptedService.interceptors.response.use(
     (response) => response,

@@ -39,6 +39,7 @@ export async function coursesLoader() {
   return {
     courses: responsePromise.then(res => res.data),
   };
+    //  این شکل نوشتن کلید را بعدها تمرین کن
 }
 
 
