@@ -1,0 +1,23 @@
+[33mcommit 2ae4076798da5be0b9012f73d2e66a752a9f295b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mSession-16/RRD7/Promise[m[33m, [m[1;31morigin/Session-16/RRD7/Promise[m[33m)[m
+Author: Mehran-0841 <amirrr1009@gmail.com>
+Date:   Sat May 17 18:21:47 2025 +0330
+
+    Componentizing the File course-details / Differing with Promises
+
+[33mcommit b81a49d018ceb2230002c8ad2e7c69c591cccf76[m
+Author: Mehran-0841 <amirrr1009@gmail.com>
+Date:   Sat May 17 11:39:50 2025 +0330
+
+    End of session 16
+
+[33mcommit cde982b1095cf00ab27a0c34303df67c269058de[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Mehran-0841 <amirrr1009@gmail.com>
+Date:   Fri May 16 16:03:06 2025 +0330
+
+    Direct Promise instead of Defer/React Router Dom 7
+
+[33mcommit 02d1ed3170a8bb82bee9805a449a69a3c788479d[m
+Author: Mehran-0841 <amirrr1009@gmail.com>
+Date:   Tue May 13 10:33:34 2025 +0330
+
+    The prescription is valid until session 15.

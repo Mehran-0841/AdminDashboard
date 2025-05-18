@@ -1,5 +1,53 @@
+import { httpInterceptedService } from "@core/http-service";
+import { Await, useLoaderData } from "react-router-dom";
+import CategoryList from "../features/categoreies/components/category-list";
+import { Suspense } from "react";
+
 const CourseCategories = () => {
-    return (<h2>course categories</h2>)
+    const data = useLoaderData();
+    return (
+        <div className="row">
+            <div className="col-12">
+                <div className="d-flex align-items-center justify-content-between mb-5">
+                    <a className="btn btn-primary fw-bolder mt-n1">
+                        افزودن دسته جدید
+                    </a>
+                </div>
+                <Suspense fallback={<p className="text-info">در حال دریافت اطلاعات ...</p>}>
+                    <Await resolve={data.categories}>
+                        {
+                            (loadedCategories) => <CategoryList categories={loadedCategories} />
+                        }
+                    </Await>
+                </Suspense>
+
+
+            </div>
+        </div>
+    )
 }
+
+// کد تغییر یافته و نسخه جایگزین دیفر
+export async function categoriesLoader() {
+    const responsePromise = httpInterceptedService.get('/CourseCategory/sieve');
+    return {
+        categories: responsePromise.then(res => res.data),
+    };
+}
+
+
+
+// // تابع دیفر منسوخ شده و باید کد را تغییر بدهیم
+// export async function categoriesLoader() {
+//     return defer({
+//         categories: loadCategories()
+//     })
+// }
+
+// const loadCategories = async () => {
+//     const response = await httpInterceptedService.get('/CourseCategory/sieve');
+//     return response.data;
+// }
+
 
 export default CourseCategories;
