@@ -16,7 +16,11 @@ const CourseCategories = () => {
                 <Suspense fallback={<p className="text-info">در حال دریافت اطلاعات ...</p>}>
                     <Await resolve={data.categories}>
                         {
-                            (loadedCategories) => <CategoryList categories={loadedCategories} />
+                            (loadedCategories) =>
+                                {   
+                                    console.log(loadedCategories);
+                                    return <CategoryList categories={loadedCategories} />           
+                                } 
                         }
                     </Await>
                 </Suspense>
@@ -34,6 +38,7 @@ export async function categoriesLoader() {
         categories: responsePromise.then(res => res.data),
     };
 }
+
 
 
 
