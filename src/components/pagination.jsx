@@ -29,7 +29,7 @@ const Pagination = ({ totalRecords, pageSize = 10 }) => {
                 </li>
 
                 {_.times(pages, (index) => (
-                    <li key={`page${index + 1}`} onClick={() => searchParams({page: index + 1})} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
+                    <li key={`page${index + 1}`} onClick={() => setSearchParams({page: index + 1})} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
                         <a className="page-link">{index + 1}</a>
                     </li>
                 ))}

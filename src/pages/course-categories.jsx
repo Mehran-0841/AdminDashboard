@@ -31,15 +31,24 @@ const CourseCategories = () => {
     )
 }
 
+
 // کد تغییر یافته و نسخه جایگزین دیفر
-export async function categoriesLoader() {
-    const responsePromise = httpInterceptedService.get('/CourseCategory/sieve');
-    return {
-        categories: responsePromise.then(res => res.data),
-    };
+const loadCategories = async (request) => {
+  const page = new URL(request.url).searchParams.get('page') || 1;
+  const pageSize = 10;
+  let url = '/CourseCategory/sieve';
+
+  url += `?page=${page}&pageSize=${pageSize}`;
+
+  const response = await httpInterceptedService.get(url);
+  return response.data;
+};
+
+export async function categoriesLoader({ request }) {
+  return {
+    categories: loadCategories(request)
+  };
 }
-
-
 
 
 // // تابع دیفر منسوخ شده و باید کد را تغییر بدهیم
@@ -53,6 +62,5 @@ export async function categoriesLoader() {
 //     const response = await httpInterceptedService.get('/CourseCategory/sieve');
 //     return response.data;
 // }
-
 
 export default CourseCategories;

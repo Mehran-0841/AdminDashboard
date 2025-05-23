@@ -30,20 +30,34 @@ const Courses = () => {
     )
 }
 
-
+// کد جایگزین دیفر به صورت تفکیک شده
+const loadCourses = async () => {
+  const response = await httpInterceptedService.get("/Course/list");
+  return response.data;
+};
 
 export async function coursesLoader() {
-  const responsePromise = httpInterceptedService.get("/Course/list");
-
-  // به‌صورت Deferred اما بدون استفاده از defer()
   return {
-    courses: responsePromise.then(res => res.data),
+    courses: loadCourses()
   };
-    //  این شکل نوشتن کلید را بعدها تمرین کن
+  //  این شکل نوشتن کلید را بعدها تمرین کن
 }
 
+export default Courses;
 
 
+// کد جایگزین دیفر به صورت تفکیک نشده
+// export async function coursesLoader() {
+//   const responsePromise = httpInterceptedService.get("/Course/list");
+
+//   // به‌صورت Deferred اما بدون استفاده از defer()
+//   return {
+//     courses: responsePromise.then(res => res.data),
+//   };
+//     //  این شکل نوشتن کلید را بعدها تمرین کن
+// }
+
+// کد نوشته شده توسط استاد سپهوند با دیفر
 // export async function coursesLoader() {
 //     return defer({
 //         courses: loadCourses(),
@@ -56,5 +70,3 @@ export async function coursesLoader() {
 //     // console.log(response.data);
 //     return response.data;
 // }
-
-export default Courses;
