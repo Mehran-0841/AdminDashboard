@@ -4,7 +4,7 @@ import Spinner from "../../../components/spinner";
 import { memo } from "react";
 
 
-const CategoryList =  memo(({ categories: { data, totalRecords }, setShowDeleteModal }) => {
+const CategoryList =  memo(({ categories: { data, totalRecords }, deleteCategory }) => {
     const navigation = useNavigation();
 
     return (
@@ -12,7 +12,7 @@ const CategoryList =  memo(({ categories: { data, totalRecords }, setShowDeleteM
             <div className="row">
                 <div className="col-12">
                     <div className="card">
-                        {navigation.state !== 'idle' && <Spinner/>}
+                        {navigation.state !== "idle" && <Spinner/>}
                         <table className="table table-striped">
                             <thead>
                                 <tr>
@@ -41,7 +41,7 @@ const CategoryList =  memo(({ categories: { data, totalRecords }, setShowDeleteM
                                                             <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                                                         </svg>
                                                     </a>
-                                                    <a onClick={() => setShowDeleteModal(true)}>
+                                                    <a onClick={() => deleteCategory(category.id)}>
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             width="24"

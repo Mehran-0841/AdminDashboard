@@ -1,5 +1,5 @@
 import { httpInterceptedService } from "@core/http-service";
-import { Await, useLoaderData } from "react-router-dom";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import CategoryList from "../features/categoreies/components/category-list";
 import { Suspense, useState } from "react";
 import Modal from "../components/modal";
@@ -7,8 +7,27 @@ import Modal from "../components/modal";
 const CourseCategories = () => {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
+    const [selectedCategory, setselectedCategory] = useState();
+    
     const data = useLoaderData();
+    const  navigate = useNavigate();
+
+    const deleteCategory = (categoryId) => {
+        setselectedCategory(categoryId);
+        setShowDeleteModal(true);
+    }
+
+    const handleDeleteCategory = async () => {
+        setShowDeleteModal(false);
+        const response = await httpInterceptedService.delete(`/CourseCategory/${selectedCategory}`);
+
+        if (response.status === 200) {
+            const url = new URL(window.location.href);
+            navigate(url.pathname + url.search);
+        }
+    }
+
+
     return (
         <>
             <div className="row">
@@ -23,7 +42,7 @@ const CourseCategories = () => {
                             {
                                 (loadedCategories) => {
                                     console.log(loadedCategories);
-                                    return <CategoryList setShowDeleteModal={setShowDeleteModal} categories={loadedCategories} />
+                                    return <CategoryList deleteCategory={deleteCategory} categories={loadedCategories} />
                                 }
                             }
                         </Await>
@@ -39,7 +58,7 @@ const CourseCategories = () => {
                 <button type="button" className="btn btn-secondary fw-bolder" onClick={() => setShowDeleteModal(false)}>
                     انصراف
                 </button>
-                <button type="button" className="btn btn-primary fw-bolder">
+                <button type="button" className="btn btn-primary fw-bolder" onClick={handleDeleteCategory}>
                     حذف
                 </button>
             </Modal>
@@ -80,3 +99,4 @@ export async function categoriesLoader({ request }) {
 // }
 
 export default CourseCategories;
+

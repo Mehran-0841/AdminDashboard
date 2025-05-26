@@ -7,3 +7,4 @@ const Spinner = ({theme = 'info'}) => {
 }
 
 export default Spinner;
+

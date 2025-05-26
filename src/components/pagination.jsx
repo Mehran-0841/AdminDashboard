@@ -45,3 +45,4 @@ const Pagination = ({ totalRecords, pageSize = import.meta.env.VITE_PAGE_SIZE}) 
 }
 
 export default Pagination;
+
