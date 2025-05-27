@@ -3,14 +3,18 @@ import { Await, useLoaderData, useNavigate } from "react-router-dom";
 import CategoryList from "../features/categoreies/components/category-list";
 import { Suspense, useState } from "react";
 import Modal from "../components/modal";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 
 const CourseCategories = () => {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState();
-    
+
     const data = useLoaderData();
-    const  navigate = useNavigate();
+    const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const deleteCategory = (categoryId) => {
         setSelectedCategory(categoryId);
@@ -18,15 +22,36 @@ const CourseCategories = () => {
     }
 
     const handleDeleteCategory = async () => {
+        // console.log("📦 toast object:", toast);
         setShowDeleteModal(false);
-        const response = await httpInterceptedService.delete(`/CourseCategory/${selectedCategory}`);
-
-        if (response.status === 200) {
-            const url = new URL(window.location.href);
-            navigate(url.pathname + url.search);
-        }
-    }
-
+        // وقتی اویت را بردارید این خط یک پرامیس به ما می‌دهد 
+        // اگر به ریزالو نیاز دارید باید اویت را بزارید بماند
+        // اینجا ما به پرامیس نیاز داریم و اویت را حذف کردیم
+        const response = httpInterceptedService.delete(`/CourseCategory/${selectedCategory}`);
+        // console.log("🔥 DELETE PROMISE:", response); // باید یک Promise نشون بده
+        toast.promise(
+            response,
+            {
+                pending: "در حال حذف ...",
+                success: {
+                    render() {
+                        const url = new URL(window.location.href);
+                        navigate(url.pathname + url.search);
+                        return "عملیات با موفقیت انجام شد";
+                    },
+                },
+                error: {
+                    render({data}) {
+                        return t("categoryList." + data.response.data.code);
+                    },
+                },
+            },
+            {
+                // position: toast.POSITION.BOTTOM_LEFT,
+                position: "bottom-left"
+            }
+        );
+    };
 
     return (
         <>

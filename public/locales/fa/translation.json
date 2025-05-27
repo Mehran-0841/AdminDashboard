@@ -12,13 +12,13 @@
     "saving": "در حال ذخیره اطلاعات ...",
     "successOperation": "عملیات با موفقیت انجام شد. به صفحه ورود منتقل می شوید",
     "validation": {
-        "mobileRequired": "موبایل الزامی است",
-        "passwordRequired": "رمز عبور الزامی است",
-        "repeatPasswordRequired": "تکرار رمز عبور الزامی است",
-        "mobileLength": "شماره موبایل باید 11 رقم باشد",
-        "notMatching": "عدم تطابق رمز های وارد شده",
-        "PasswordTooShort": "حداقل طول رمز عبور باید 6 کاراکتر باشد",
-        "DuplicateUserName": "نام کاربری قبلا توسط کاربر دیگری ثبت شده است"
+      "mobileRequired": "موبایل الزامی است",
+      "passwordRequired": "رمز عبور الزامی است",
+      "repeatPasswordRequired": "تکرار رمز عبور الزامی است",
+      "mobileLength": "شماره موبایل باید 11 رقم باشد",
+      "notMatching": "عدم تطابق رمز های وارد شده",
+      "PasswordTooShort": "حداقل طول رمز عبور باید 6 کاراکتر باشد",
+      "DuplicateUserName": "نام کاربری قبلا توسط کاربر دیگری ثبت شده است"
     }
   },
   "login": {
@@ -31,9 +31,9 @@
     "password": "رمز عبور",
     "areNotRegistered": "ثبت نام نکرده اید؟",
     "validation": {
-        "mobileRequired": "موبایل الزامی است",
-        "passwordRequired": "رمز عبور الزامی است",
-        "IncorrectUserNameOrPassword": "موبایل یا رمز عبور صحیح نمی باشد"
+      "mobileRequired": "موبایل الزامی است",
+      "passwordRequired": "رمز عبور الزامی است",
+      "IncorrectUserNameOrPassword": "موبایل یا رمز عبور صحیح نمی باشد"
     }
   },
   "mainLayout": {
@@ -50,5 +50,8 @@
       "tagManagement": "مدیریت تگ ها",
       "postManagement": "مدیریت پست ها"
     }
+  },
+  "categoryList": {
+    "DeleteIsNotPossible": "حذف این دسته امکان پذیر نیست"
   }
 }
