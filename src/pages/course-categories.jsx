@@ -7,13 +7,13 @@ import Modal from "../components/modal";
 const CourseCategories = () => {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedCategory, setselectedCategory] = useState();
+    const [selectedCategory, setSelectedCategory] = useState();
     
     const data = useLoaderData();
     const  navigate = useNavigate();
 
     const deleteCategory = (categoryId) => {
-        setselectedCategory(categoryId);
+        setSelectedCategory(categoryId);
         setShowDeleteModal(true);
     }
 
