@@ -1,18 +1,24 @@
-import { useNavigation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Pagination from "../../../components/pagination";
 import Spinner from "../../../components/spinner";
 import { memo } from "react";
 
+const CategoryList = memo(({ categories: { data, totalRecords }, deleteCategory }) => {
+    // وضعیت لودینگ محلی برای کنترل نمایش اسپینر
+    const [isLoading, setIsLoading] = useState(false);
 
-const CategoryList =  memo(({ categories: { data, totalRecords }, deleteCategory }) => {
-    const navigation = useNavigation();
+    // وقتی داده‌ها (props) تغییر می‌کنن، لودینگ تموم می‌شه
+    useEffect(() => {
+        setIsLoading(false);
+    }, [data]);
 
     return (
         <>
             <div className="row">
                 <div className="col-12">
                     <div className="card">
-                        {navigation.state !== "idle" && <Spinner/>}
+                        {/* فقط اگر در حال لود شدن باشیم، اسپینر نمایش داده میشه */}
+                        {isLoading && <Spinner />}
                         <table className="table table-striped">
                             <thead>
                                 <tr>
@@ -64,12 +70,13 @@ const CategoryList =  memo(({ categories: { data, totalRecords }, deleteCategory
                             </tbody>
                         </table>
                         <div className="card-footer">
-                            <Pagination totalRecords={totalRecords}/>
+                            <Pagination 
+                                totalRecords={totalRecords} 
+                                onPageChangeStart={() => setIsLoading(true)} 
+                            />
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </>
     )
