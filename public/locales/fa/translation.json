@@ -52,6 +52,7 @@
     }
   },
   "categoryList": {
-    "DeleteIsNotPossible": "حذف این دسته امکان پذیر نیست"
+    "DeleteIsNotPossible": "حذف این دسته امکان پذیر نیست",
+    "DuplicateCategory": "اسم دسته تکراری است"
   }
 }

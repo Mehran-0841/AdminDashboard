@@ -5,12 +5,15 @@ import { Suspense, useState } from "react";
 import Modal from "../components/modal";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import AddOrUpdateCategory from "../features/categoreies/components/add-or-update-category";
 
 
 const CourseCategories = () => {
 
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState();
+    const [showAddCategory, setShowAddCategory] = useState(false);
+
 
     const data = useLoaderData();
     const navigate = useNavigate();
@@ -41,7 +44,7 @@ const CourseCategories = () => {
                     },
                 },
                 error: {
-                    render({data}) {
+                    render({ data }) {
                         return t("categoryList." + data.response.data.code);
                     },
                 },
@@ -58,10 +61,17 @@ const CourseCategories = () => {
             <div className="row">
                 <div className="col-12">
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <a className="btn btn-primary fw-bolder mt-n1">
-                            افزودن دسته جدید
-                        </a>
+                        <h3 className="mb-0">دسته بندی دوره ها</h3>
+                        <button
+                            onClick={() => setShowAddCategory(true)}
+                            className="btn btn-primary fw-bolder  mt-n1"
+                        >
+                            <i className="fas fa-plus ms-2"></i>افزودن دسته جدید
+                        </button>
                     </div>
+                    {
+                        showAddCategory && <AddOrUpdateCategory setShowAddCategory={setShowAddCategory} />
+                    }
                     <Suspense fallback={<p className="text-info">در حال دریافت اطلاعات ...</p>}>
                         <Await resolve={data.categories}>
                             {
