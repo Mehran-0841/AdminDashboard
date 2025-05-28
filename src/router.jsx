@@ -6,47 +6,53 @@ import MainLayout from "./layouts/mainLayout/main-layout";
 import Courses, { coursesLoader } from "./pages/courses";
 import CourseCategories, { categoriesLoader } from "./pages/course-categories";
 import CourseDetails, { courseDetailsLoader } from "./features/courses/componenets/course-details";
+import { CategoryProvider } from "./features/categoreies/category-context";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <MainLayout/>,
+        element: <MainLayout />,
         children: [{
-            element: <Courses/>,
+            element: <Courses />,
             index: true,
             loader: coursesLoader
         },
         {
             path: 'course-categories',
-            element: <CourseCategories/>,
+            element:
+                (
+                    <CategoryProvider>
+                        <CourseCategories/>
+                    </CategoryProvider>
+                ),
             loader: categoriesLoader
         },
         {
             path: 'courses/:id',
-            element: <CourseDetails/>,
+            element: <CourseDetails />,
             loader: courseDetailsLoader
         }
-    ]
+        ]
     },
     {
-        element: <IdentityLayout/>,
+        element: <IdentityLayout />,
         children: [
             {
                 path: 'login',
-                element: <Login/>,
+                element: <Login />,
                 action: loginAction,
-                errorElement: <Login/>,
+                errorElement: <Login />,
             },
             {
                 path: 'register',
-                element: <Register/>,
+                element: <Register />,
                 action: registerAction,
-                errorElement: <Register/>,
+                errorElement: <Register />,
             }
         ]
     }
-    
+
 ])
 
 export default router;
