@@ -39,6 +39,7 @@ const AddOrUpdateCategory = ({setShowAddCategory}) => {
             render() {
               const url = new URL(window.location.href);
               navigate(url.pathname + url.search);
+            //   شرط برای نولینک
               if (category) {
                 setCategory(null);
               }
